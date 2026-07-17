@@ -15,7 +15,7 @@ Este projeto demonstra conceitos basicos de:
 
 ```text
 src/
-  Principal.java
+  br.com.westes.screenmatch.principal.Principal.java
   br/com/westes/screenmatch/
     calculos/
       CalculadoraDeTempo.java
@@ -37,13 +37,13 @@ src/
 Na raiz do projeto:
 
 ```powershell
-javac -encoding UTF-8 -d out src\Principal.java src\br\com\westes\screenmatch\calculos\*.java src\br\com\westes\screenmatch\modelos\*.java
+javac -encoding UTF-8 -d out src\br.com.westes.screenmatch.principal.Principal.java src\br\com\westes\screenmatch\calculos\*.java src\br\com\westes\screenmatch\modelos\*.java
 ```
 
 ### Rodar
 
 ```powershell
-java -cp out Principal
+java -cp out br.com.westes.screenmatch.principal.Principal
 ```
 
 ## Exemplo de Saida Esperada

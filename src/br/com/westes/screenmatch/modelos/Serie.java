@@ -9,6 +9,10 @@ public class Serie extends Titulo implements Classificavel {
     private int episodiosPorTemporada;
     private int minutosPorEpisodio;
 
+    public Serie(String nome) {
+        super(nome);
+    }
+
     public int getTemporadas() {
         return temporadas;
     }
@@ -50,4 +54,10 @@ public class Serie extends Titulo implements Classificavel {
     public int getClassificacao() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Filme [ %s ] ( %d )", this.getNome(), this.getAnoDeLancamento());
+    }
+
 }

@@ -1,6 +1,6 @@
 package br.com.westes.screenmatch.modelos;
 
-public class Titulo {
+public class Titulo implements Comparable<Titulo> {
 
     private String nome;
     private int anoDeLancamento;
@@ -9,11 +9,15 @@ public class Titulo {
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
 
+    public Titulo(String nome) {
+        this.nome = nome;
+    }
+
     public void exibeFichaTecnica() {
-        System.out.println("Nome do filme: " +nome);
-        System.out.println("Ano de lançamento: " +anoDeLancamento);
-        System.out.println("Duração em minutos: " +duracaoEmMinutos);
-        System.out.println("Incluído no plano: " +incluidoNoPlano);
+        System.out.println("Nome do filme: " + nome);
+        System.out.println("Ano de lançamento: " + anoDeLancamento);
+        System.out.println("Duração em minutos: " + duracaoEmMinutos);
+        System.out.println("Incluído no plano: " + incluidoNoPlano);
     }
 
     public void avalia(double nota) {
@@ -27,10 +31,6 @@ public class Titulo {
 
     public String getNome() {
         return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public int getAnoDeLancamento() {
@@ -61,4 +61,8 @@ public class Titulo {
         return this.totalDeAvaliacoes;
     }
 
+    @Override
+    public int compareTo(Titulo o) {
+        return this.getNome().compareTo(o.getNome());
+    }
 }
