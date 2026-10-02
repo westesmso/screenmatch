@@ -1,5 +1,8 @@
 package br.com.westes.screenmatch.modelos;
 
+import br.com.westes.screenmatch.excecao.ErroConversaoAnoException;
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable<Titulo> {
 
     private String nome;
@@ -13,12 +16,21 @@ public class Titulo implements Comparable<Titulo> {
         this.nome = nome;
     }
 
-    public void exibeFichaTecnica() {
-        System.out.println("Nome do filme: " + nome);
-        System.out.println("Ano de lançamento: " + anoDeLancamento);
-        System.out.println("Duração em minutos: " + duracaoEmMinutos);
-        System.out.println("Incluído no plano: " + incluidoNoPlano);
+    public Titulo(TituloOmdb dto) {
+        this.nome = dto.title();
+        if (dto.year().length() >4 ){
+            throw new ErroConversaoAnoException("não consegui converter o ano porque tem mais de 4 dígitos");
+        }
+        this.anoDeLancamento = Integer.valueOf(dto.year());
+        this.duracaoEmMinutos = Integer.valueOf(dto.runtime().substring(0,2));
     }
+
+//    public void exibeFichaTecnica() {
+//        System.out.println("Nome do filme: " + nome);
+//        System.out.println("Ano de lançamento: " + anoDeLancamento);
+//        System.out.println("Duração em minutos: " + duracaoEmMinutos);
+//        System.out.println("Incluído no plano: " + incluidoNoPlano);
+//    }
 
     public void avalia(double nota) {
         somaDasAvaliacoes += nota;
@@ -64,5 +76,12 @@ public class Titulo implements Comparable<Titulo> {
     @Override
     public int compareTo(Titulo o) {
         return this.getNome().compareTo(o.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return "(nome='" + nome + '\''
+                + " | anoDeLancamento='" + anoDeLancamento + '\''
+                + " | duracaoEmMinutos='" + duracaoEmMinutos + '\'' + ")";
     }
 }
